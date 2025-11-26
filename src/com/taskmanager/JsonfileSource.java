@@ -69,22 +69,40 @@ public class JsonfileSource implements IfileSource {
     }
 
     private String extract(String str, String key) {
+
         String newKey = "\"" + key + "\"";
         int index = str.indexOf(newKey);
         if (index == -1)
             return "";
-        int startIndex = str.indexOf('"', index + newKey.length());
 
-        if (startIndex == -1)
+        int colonIndex = str.indexOf(':', index + newKey.length());
+        if (colonIndex == -1)
             return "";
 
-        int endIndex = str.indexOf('"', startIndex + 1);
+        if (key.equals("id")) {
+            int startIndex = colonIndex + 1;
+            while (startIndex < str.length() && Character.isWhitespace(str.charAt(startIndex))) {
+                startIndex++;
+            }
 
-        if (endIndex == -1)
-            return "";
+            int endIndex = startIndex;
+            while (endIndex < str.length() && Character.isDigit(str.charAt(endIndex))) {
+                endIndex++;
+            }
+            return str.substring(startIndex, endIndex);
+        } else { // For all other keys, assume the value is a string in quotes
+            int startIndex = str.indexOf('"', colonIndex);
+            if (startIndex == -1)
+                return "";
 
+            int endIndex = str.indexOf('"', startIndex + 1);
+            if (endIndex == -1)
+                return "";
 
-        String value = str.substring(startIndex + 1, endIndex);
-        return value;
+            return str.substring(startIndex + 1, endIndex);
+        }
     }
 }
+
+
+

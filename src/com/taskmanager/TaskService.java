@@ -12,11 +12,11 @@ public class TaskService {
         this.repository = repository;
     }
 
-    public void createNewTask(String title, String description) {
+    public Task createNewTask(String title, String description) {
         long newId = System.currentTimeMillis();
         Task task = new Task(newId, title, description, Status.NEW);
         repository.add(task);
-        System.out.println("New task created successfully!");
+        return task;
     }
 
     public List<Task> getAllTasks() {
@@ -27,24 +27,24 @@ public class TaskService {
         updateTaskStatus(id, Status.DONE);
     }
 
-    public void updateTaskStatus(long id, Status newStatus) {
+    public boolean updateTaskStatus(long id, Status newStatus) {
         Task task = repository.getById(id);
         if (task != null) {
             task.setStatus(newStatus);
             repository.updateTask(task);
-            System.out.println("task status updated!");
+            return true;
         } else {
-            System.out.println("task with ID " + id + " not found!");
+            return false;
         }
     }
 
-    public void deleteTask(long id) {
+    public boolean deleteTask(long id) {
         Task task = repository.getById(id);
         if (task != null) {
             repository.delete(task);
-            System.out.println("task deleted successfully!.");
+            return true;
         } else {
-            System.out.println("warning task with ID " + id + " not found.");
+            return false;
         }
     }
 
