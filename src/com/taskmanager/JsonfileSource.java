@@ -6,11 +6,11 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
-public class fileSource implements IfileSource {
+public class JsonfileSource implements IfileSource {
 
     private final File file;
 
-    public fileSource(String path) {
+    public JsonfileSource(String path) {
         this.file = new File(path);
     }
 
