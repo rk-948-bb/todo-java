@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Finalize project README",
+    "description": "Write the final version of the README.md file, including architecture and setup instructions.",
+    "status": "DONE"
+  },
+  {
+    "id": 2,
+    "title": "Implement user interface in Main",
+    "description": "Complete the code for all menu options in the Main.java class.",
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": 3,
+    "title": "Test all application features",
+    "description": "Perform end-to-end testing for creating, updating, deleting, and searching for tasks.",
+    "status": "NEW"
+  },
+  {
+    "id": 4,
+    "title": "Prepare for project submission",
+    "description": "Commit all final changes and push to the remote repository.",
+    "status": "NEW"
+  }
+]
