@@ -30,7 +30,9 @@ public class Task {
     public String getTitle() {
         return title;
     }
-
+    public Status getStatus() {
+        return status;
+    }
     public String getStatusAsString() {
         return status.name();
     }
